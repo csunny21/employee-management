@@ -1,4 +1,5 @@
 Incredibly simple application to help practice core java. 
-Only contains three simple classes: Enum, Business Logic, Employee Class.
+contains five packages: Enum, Business Logic, Employee Class to name a couple.
 Constructors, Getter/Setters, If-Statements, Exception Handling, Calling Methods,
-For-Loops, Parameters, and Return Types.
+For-Loops, Parameters, and Return Types can be viewed.
+OOP concepts like Inheritance (extends), Interfaces (implements), and Abstraction are also within the application.
