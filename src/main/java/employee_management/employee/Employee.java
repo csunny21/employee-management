@@ -2,13 +2,13 @@ package employee_management.employee;
 
 import employee_management.department.Department;
 
-public class Employee {
+public class Employee extends Person {
 
     //variables
     String name;
     Long employeeId;
     String dateOfBirth;
-    Department department;
+    private Department department;
     String email;
     Long salary;
 
@@ -36,8 +36,6 @@ public class Employee {
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
-
 
     public String getEmail() {
         return email;

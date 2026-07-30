@@ -2,6 +2,9 @@ package employee_management;
 
 import employee_management.department.Department;
 import employee_management.employee.Employee;
+import employee_management.notification.EmailNotificationStrategy;
+import employee_management.notification.NotificationStrategy;
+import employee_management.notification.SmsNotificationStrategy;
 import employee_management.service.EmployeeService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,7 +29,13 @@ public class EmployeeManagementApplication {
 				"jim.steve@xcompany.com",
 				60000L);
 
+		NotificationStrategy welcomeEmail = new EmailNotificationStrategy();
+		NotificationStrategy smsCredentials = new SmsNotificationStrategy();
+
 		service.addEmployee(emp1);
+		welcomeEmail.send(emp1);
+		smsCredentials.send(emp1);
+
 
 		Employee emp2 = new Employee(
 				"Sammy",
@@ -37,6 +46,9 @@ public class EmployeeManagementApplication {
 				35000L);
 
 		service.addEmployee(emp2);
+		welcomeEmail.send(emp2);
+		smsCredentials.send(emp2);
+
 
 		//retrieving all employees
 		System.out.println(service.getAllEmployees());
@@ -50,8 +62,8 @@ public class EmployeeManagementApplication {
 		System.out.println(financeEmployees);
 
 		//updating employee
-		service.updateEmployee(1001L, "jim.steve1@xcompany.com");
-		System.out.println(service.findEmployeeById(1001L));
+		//service.updateEmployee(1001L, "jim.steve1@xcompany.com");
+		//System.out.println(service.findEmployeeById(1001L));
 
 		//delete employee
 		//service.deleteEmployee(1001L);

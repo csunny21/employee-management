@@ -2,6 +2,7 @@ package employee_management.service;
 
 import employee_management.department.Department;
 import employee_management.employee.Employee;
+import employee_management.exception.EmployeeNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +22,12 @@ public class EmployeeService {
             if (employee.getEmployeeId().equals(id)) {
                 return employee;
             }
-        throw new RuntimeException("Employee not found with id " + id);
+        throw new EmployeeNotFoundException("Employee with id " + id + " not found");
     }
-
 
     public List<Employee> getAllEmployees() {
         return employees;
     }
-
 
     public List<Employee> findByDepartment(Department department) {
        List<Employee> result = new ArrayList<>();
@@ -42,9 +41,10 @@ public class EmployeeService {
 
 
 
-    public void updateEmployee(Long id, String email) {
+    public void updateEmployee(Long id, String email, String newName) {
         Employee employee = findEmployeeById(id);
         employee.setEmail(email);
+        employee.setName(newName);
     }
 
     public void deleteEmployee(Long id) {
@@ -72,7 +72,7 @@ public class EmployeeService {
             if (employee.getName().equals(name)) {
                 return result;
             }
-        throw new RuntimeException("Employee not found " + name);
+        throw new EmployeeNotFoundException("Employee not found " + name);
     }
 
     public int countEmployeesByDepartment(Department department) {
