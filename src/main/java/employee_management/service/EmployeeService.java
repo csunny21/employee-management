@@ -1,90 +1,58 @@
 package employee_management.service;
 
-import employee_management.department.Department;
-import employee_management.employee.Employee;
+import employee_management.entity.Employee;
 import employee_management.exception.EmployeeNotFoundException;
+import employee_management.repository.EmployeeRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class EmployeeService {
 
-    //methods
-    private List<Employee> employees = new ArrayList<>();
+    private final EmployeeRepository repository;
 
-    public void addEmployee(Employee employee) {
-        employees.add(employee);
+    public EmployeeService(EmployeeRepository employeeRepository) {
+        this.repository = employeeRepository;
+    }
 
+    /* old method examples before db
+       public void addEmployee(Employee employee) {
+            employees.add(employee);
+    }
+     */
+
+    public Employee createEmployee(Employee employee) {
+        return repository.save(employee);
     }
 
     public Employee findEmployeeById(Long id) {
-        for (Employee employee : employees)
-            if (employee.getEmployeeId().equals(id)) {
-                return employee;
-            }
-        throw new EmployeeNotFoundException("Employee with id " + id + " not found");
+        return repository.findById(id).orElseThrow(()
+                -> new EmployeeNotFoundException("Employee not found."));
     }
 
     public List<Employee> getAllEmployees() {
-        return employees;
-    }
-
-    public List<Employee> findByDepartment(Department department) {
-       List<Employee> result = new ArrayList<>();
-
-        for (Employee employee : employees)
-            if (employee.getDepartment().equals(department)) {
-                result.add(employee);
-            }
-        return result;
+        return repository.findAll();
     }
 
 
+    public Employee updateEmployee(Long id, Employee updatedEmployee) {
+        Employee existingEmployee = repository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found."));
 
-    public void updateEmployee(Long id, String email, String newName) {
-        Employee employee = findEmployeeById(id);
-        employee.setEmail(email);
-        employee.setName(newName);
+        existingEmployee.setName(updatedEmployee.getName());
+        existingEmployee.setDepartment(updatedEmployee.getDepartment());
+        existingEmployee.setSalary(updatedEmployee.getSalary());
+
+        return repository.save(existingEmployee);
     }
+
 
     public void deleteEmployee(Long id) {
-        Employee employee = findEmployeeById(id);
-        employees.remove(employee);
-    }
-
-    public int getTotalEmployees() {
-        return employees.size();
-    }
-
-    public boolean existsById(Long id) {
-        for (Employee employee : employees) {
-            if (employee.getEmployeeId().equals(id)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public List<Employee> findByName(String name) {
-        List<Employee> result = new ArrayList<>();
-
-        for (Employee employee : employees)
-            if (employee.getName().equals(name)) {
-                return result;
-            }
-        throw new EmployeeNotFoundException("Employee not found " + name);
-    }
-
-    public int countEmployeesByDepartment(Department department) {
-
-        int count = 0;
-
-        for (Employee employee : employees) {
-            if (employee.getDepartment().equals(department)) {
-                count++;
-            }
-        }
-        return count;
+       if(!repository.existsById(id)) {
+           throw new EmployeeNotFoundException("Employee not found.");
+       }
+       repository.deleteById(id);
     }
 
 }

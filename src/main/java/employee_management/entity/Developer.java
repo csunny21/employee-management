@@ -1,6 +1,6 @@
-package employee_management.employee;
+package employee_management.entity;
 
-import employee_management.department.Department;
+import employee_management.enums.Department;
 import employee_management.notification.Notifiable;
 
 public class Developer extends Employee implements Notifiable {

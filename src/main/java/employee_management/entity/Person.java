@@ -1,4 +1,4 @@
-package employee_management.employee;
+package employee_management.entity;
 
 public class Person {
 

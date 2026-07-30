@@ -1,16 +1,30 @@
-package employee_management.employee;
+package employee_management.entity;
 
-import employee_management.department.Department;
+import employee_management.enums.Department;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "employees")
 public class Employee extends Person {
 
     //variables
-    String name;
-    Long employeeId;
-    String dateOfBirth;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long employeeId;
+
+    private String name;
+
+    private String dateOfBirth;
+
+    @Enumerated(EnumType.STRING)
     private Department department;
-    String email;
-    Long salary;
+
+    private String email;
+
+    private Long salary;
+
+    public Employee() {
+    }
 
     //getters and setters
     public String getName() {
@@ -79,7 +93,7 @@ public class Employee extends Person {
                 "name='" + name + '\'' +
                 ", employeeId=" + employeeId +
                 ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", department='" + department + '\'' +
+                ", enums='" + department + '\'' +
                 ", email='" + email + '\'' +
                 ", salary=" + salary +
                 '}';

@@ -1,4 +1,4 @@
-package employee_management.department;
+package employee_management.enums;
 
 public enum Department {
 

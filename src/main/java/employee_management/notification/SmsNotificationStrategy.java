@@ -1,6 +1,6 @@
 package employee_management.notification;
 
-import employee_management.employee.Employee;
+import employee_management.entity.Employee;
 
 public class SmsNotificationStrategy implements NotificationStrategy {
 
