@@ -1,3 +1,10 @@
+In this employee management application we went from a traditional CRUD application to an event-driven microservice architecture.
+
+IntelliJ - IDE, Ubuntu-Docker-Kafka, Postman-Manual Integration Testing, Localhost - UI, PG Admin - Database
+Employee-Management - Main Application
+Notification-Service - Microservice
+Audit-Service - Microservice
+
 First Iteration was an incredibly simple application to help practice core java. 
 contains five packages: Enum, Business Logic, Employee Class to name a couple.
 Constructors, Getter/Setters, If-Statements, Exception Handling, Calling Methods,
