@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Employee Management Dashboard</title>
+
+</head>
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>EMS</h2>
+        </div>
+
+        <nav>
+            <ul>
+                <li>Support</li>
+                <li>Reports</li>
+                <li>Employees</li>
+                <li>Settings</a></li>
+            </ul>
+        </nav>
+
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <h1>Employee Management Dashboard</h1>
+        </header>
+
+        <section class="dashboard-cards">
+
+            <div class="card">
+                <h3>Total Employees</h3>
+                <p id="totalEmployees">0</p>
+            </div>
+
+            <div class="card">
+                <h3>IT Employees</h3>
+                <p id="itEmployees">0</p>
+            </div>
+
+            <div class="card">
+                <h3>HR Employees</h3>
+                <p id="hrEmployees">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Finance Employees</h3>
+                <p id="financeEmployees">0</p>
+            </div>
+        </section>
+
+        <section class="employee-form-section">
+
+            <h2>Add Employee</h2>
+
+            <form id="employeeForm">
+
+                <div class="form-group">
+                    <label for="name">Employee Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter employee name"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="department">Department</label>
+
+                    <select id="department" name="department" required>
+                        <option value="TECH"></option>
+                        <option value="HR"></option>
+                        <option value="SUPPORT"></option>
+                        <option value="FINANCE"></option>
+                        <option value="SALES"></option>
+                        <option value="OPERATIONS"></option>
+                    </select>
+                </div>
+
+                <button type="submit">
+                        Add Employee
+                    </button>
+            </form>
+        </section>
+
+        <section class="employee-table-section">
+
+            <div class="table-header">
+                <h2>Employee Directory</h2>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search employee...">
+            </div>
+
+            <table>
+
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+
+                <tbody id="employeeTableBody">
+
+                <tr>
+                    <td>1</td>
+                    <td>Chris</td>
+                    <td>TECH</td>
+                    <td>
+                        <button>Edit</button>
+                    </td>
+                    <td>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

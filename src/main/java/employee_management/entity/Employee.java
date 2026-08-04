@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "employees")
-public class Employee extends Person {
+public class Employee {
 
     //variables
     @Id

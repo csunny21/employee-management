@@ -1,9 +1,14 @@
 package employee_management.service;
 
 import employee_management.entity.Employee;
+import employee_management.event.EmployeeCreatedEvent;
 import employee_management.exception.EmployeeNotFoundException;
+import employee_management.kafka.EmployeeKafkaProducer;
 import employee_management.repository.EmployeeRepository;
+
 import org.springframework.stereotype.Service;
+import org.springframework.context.ApplicationEventPublisher;
+
 
 import java.util.List;
 
@@ -11,9 +16,15 @@ import java.util.List;
 public class EmployeeService {
 
     private final EmployeeRepository repository;
+    private final ApplicationEventPublisher publisher;
+    private final EmployeeKafkaProducer producer;
 
-    public EmployeeService(EmployeeRepository employeeRepository) {
-        this.repository = employeeRepository;
+    public EmployeeService(EmployeeRepository repository,
+                           ApplicationEventPublisher publisher,
+                           EmployeeKafkaProducer producer) {
+        this.repository = repository;
+        this.publisher = publisher;
+        this.producer = producer;
     }
 
     /* old method examples before db
@@ -23,7 +34,17 @@ public class EmployeeService {
      */
 
     public Employee createEmployee(Employee employee) {
-        return repository.save(employee);
+
+        Employee savedEmployee = repository.save(employee);
+
+        publisher.publishEvent(
+                new EmployeeCreatedEvent(savedEmployee));
+
+        System.out.println("Sending Kafka message for " + savedEmployee.getName());
+
+        producer.sendEmployeeCreated(savedEmployee.getName());
+
+        return savedEmployee;
     }
 
     public Employee findEmployeeById(Long id) {
