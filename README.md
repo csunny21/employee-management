@@ -9,3 +9,6 @@ New packages, new classes. Instead of using the main we used Postman to manually
 
 The third iteration saw a simple UI created (HTML, CSS, JS). Listeners, Kafka, and Async was introduced to the application.
 Than once the architecture allowed, I refactored the application removing Listeners/Entity/Notification classes.
+
+The fourth iteration saw the removal of the consumer which is now in a microservice application: Notification Service
+https://github.com/csunny21/notification-service
