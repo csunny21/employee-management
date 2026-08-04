@@ -12,3 +12,6 @@ Than once the architecture allowed, I refactored the application removing Listen
 
 The fourth iteration saw the removal of the consumer which is now in a microservice application: Notification Service
 https://github.com/csunny21/notification-service
+
+The fifth iteration saw the removal of more classes to make room for microservice application: Audit Service
+https://github.com/csunny21/audit-service
