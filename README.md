@@ -7,3 +7,5 @@ OOP concepts like Inheritance (extends), Interfaces (implements), and Abstractio
 Second iteration, saw an overhaul of methods when the PGAdmin(database) was integated.
 New packages, new classes. Instead of using the main we used Postman to manually integration test if the db was working.
 
+The third iteration saw a simple UI created (HTML, CSS, JS). Listeners, Kafka, and Async was introduced to the application.
+Than once the architecture allowed, I refactored the application removing Listeners/Entity/Notification classes.
